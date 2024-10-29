@@ -1,0 +1,36 @@
+name: Review Dog
+on: [pull_request]
+
+jobs:
+  eslint:
+    runs-on: [self-hosted, dtl-arc]
+    steps:
+      - name: Copy Repository Files
+        uses: actions/checkout@v3
+
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            js:
+              - '**/*.js'
+      - uses: actions/setup-node@v3
+        if: steps.changes.outputs.js == 'true'
+        with:
+          node-version: 22
+          registry-url: https://npm.github.aimdt.com
+
+      - name: Install dependencies
+        if: steps.changes.outputs.js == 'true'
+        run: yarn install --frozen-lockfile --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+
+      - name: Eslint review
+        if: steps.changes.outputs.js == 'true'
+        uses: reviewdog/action-eslint@v1.3
+        with:
+          reporter: github-pr-review
+          fail_on_error: true
+          level: warning
+          filter_mode: file
