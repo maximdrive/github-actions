@@ -21,7 +21,7 @@ function spawnFood() {
         y: Math.floor(Math.random() * (canvas.height / box)) * box
     };
 }
-   //hello world
+   //hello world fasfa
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);

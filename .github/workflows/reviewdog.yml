@@ -19,7 +19,7 @@ jobs:
         if: steps.changes.outputs.js == 'true'
         with:
           node-version: 22
-          registry-url: https://npm.github.aimdt.com
+       
 
       - name: Install dependencies
         run: npm install eslint -D
