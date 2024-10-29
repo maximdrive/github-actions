@@ -14,6 +14,7 @@ jobs:
           filters: |
             js:
               - '**/*.js'
+
       - uses: actions/setup-node@v3
         if: steps.changes.outputs.js == 'true'
         with:
