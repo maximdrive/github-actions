@@ -1,9 +1,9 @@
 name: Review Dog
-on: [pull_request]
+on: [push]
 
 jobs:
   eslint:
-    runs-on: [self-hosted, dtl-arc]
+    runs-on: ubuntu-latest
     steps:
       - name: Copy Repository Files
         uses: actions/checkout@v3
@@ -21,11 +21,8 @@ jobs:
           registry-url: https://npm.github.aimdt.com
 
       - name: Install dependencies
-        if: steps.changes.outputs.js == 'true'
-        run: yarn install --frozen-lockfile --ignore-scripts
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-
+        run: npm install eslint -D
+        
       - name: Eslint review
         if: steps.changes.outputs.js == 'true'
         uses: reviewdog/action-eslint@v1.3
