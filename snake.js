@@ -1,7 +1,7 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
-const box = 20; // Размер клетки sfaf
+const box = 20; // Размер клетки sfaf sfaf
 let snake = [{ x: 9 * box, y: 9 * box }]; // Начальная позиция змейки
 let direction = 'RIGHT'; // Начальное направление
 let food = spawnFood(); // Позиция еды

@@ -26,7 +26,7 @@ jobs:
         
       - name: Eslint review
         if: steps.changes.outputs.js == 'true'
-        uses: reviewdog/action-eslint@v1.22
+        uses: reviewdog/action-eslint@v1.34
         with:
           reporter: github-pr-review
           fail_on_error: true
